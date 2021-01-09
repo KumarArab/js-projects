@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script>
+        // Creating Canvas 
+
+        function createNormalHouse(canvas, color) {
+            canvas.height = 300;
+            canvas.width = 300;
+            canvas.style.border = "1px solid black";
+            var houseColor = color;
+            var ctx = canvas.getContext('2d');
+            var gr = ctx.createLinearGradient(0, 200, 250, 250);
+
+            gr.addColorStop("0.2", "#2c061f");
+            gr.addColorStop("1", "#374045");
+
+            ctx.fillStyle = gr;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+
+            //House
+
+            var c = canvas.getContext('2d');
+            c.canvas.width = 300;
+            c.canvas.height = 300;
+            var cX = canvas.width / 2;
+            var cY = canvas.height / 2;
+            var white = "#FFF";
+
+            // house body
+            c.beginPath();
+            c.rect(cX - 100, cY - 50, 200, 200);
+            c.fillStyle = houseColor;
+            c.fill();
+            c.closePath();
+
+            // window
+            c.beginPath();
+            c.rect(cX - 70, cY - 20, 40, 40);
+            c.fillStyle = white;
+            c.fill();
+            c.closePath();
+
+            // roof
+            c.beginPath();
+            c.moveTo(cX - 100, cY - 50);
+            c.lineTo(cX, cY - 150);
+            c.lineTo(cX + 100, cY - 50);
+            c.lineTo(cX - 100, cY - 50);
+            c.fillStyle = houseColor;
+            c.fill();
+            c.closePath();
+
+            // door
+            c.beginPath();
+            c.rect(cX + 20, cY + 71, 50, 80);
+            c.fillStyle = white;
+            c.fill();
+            c.closePath();
+
+            // roof decor
+            for (var j = 0; j < 5; j++) {
+                for (var i = 0; i < 10; i++) {
+                    c.beginPath();
+                    c.moveTo((cX - 70) + (i * 20), (cY - 50) - (j * 20));
+                    c.lineTo((cX - 80) + (i * 20), (cY - 60) - (j * 20));
+                    c.moveTo((cX - 110) + (i * 20), (cY - 50) - (j * 20));
+                    c.lineTo((cX - 90) + (i * 20), (cY - 70) - (j * 20));
+                    c.strokeStyle = white;
+                    c.stroke();
+                    c.closePath();
+                }
+            }
+
+            // body decor
+            for (var j = 0; j < 7; j++) {
+                for (var i = 0; i < 8; i++) {
+                    c.beginPath();
+                    c.moveTo((cX - 100) + (i * 30), (cY + 135) - (j * 30));
+                    c.lineTo((cX - 130) + (i * 30), (cY + 135) - (j * 30));
+                    c.lineTo((cX - 130) + (i * 30), (cY + 150) - (j * 30));
+                    if (j != 6) {
+                        c.moveTo((cX - 115) + (i * 30), (cY + 135) - (j * 30));
+                        c.lineTo((cX - 115) + (i * 30), (cY + 120) - (j * 30));
+                        c.lineTo((cX - 85) + (i * 30), (cY + 120) - (j * 30));
+                    }
+                    //c.rect((cX - 100) + (i * 30), (cY + 135) - (j * 30), 30, 15);
+                    //if ( j != 6 ) {
+                    //c.rect((cX - 85) + (i * 30), (cY + 120) - (j * 30), 30, 15);
+                    //}
+                    c.strokeStyle = white;
+                    c.stroke();
+                    c.closePath();
+                }
+            }
+
+            // chimney
+            c.beginPath();
+            c.rect(cX + 60, cY - 120, 20, 50);
+            c.rect(cX + 50, cY - 130, 40, 10);
+            c.fillStyle = houseColor;
+            c.fill();
+            c.closePath();
+
+            // window lines
+            c.beginPath();
+            c.moveTo(cX - 70, cY);
+            c.lineTo(cX - 30, cY);
+            c.moveTo(cX - 50, cY - 20);
+            c.lineTo(cX - 50, cY + 20);
+            c.strokeStyle = houseColor;
+            c.lineWidth = 2;
+            c.stroke();
+            c.closePath();
+
+        }
+        var canvas = document.createElement('canvas');
+
+
+        createNormalHouse(canvas, '#433520');
+        canvas.onmouseover = function() {
+            const context = canvas.getContext('2d');
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            createNormalHouse(canvas, '#00917c');
+        };
+        canvas.onmouseout = function() {
+            const context = canvas.getContext('2d');
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            createNormalHouse(canvas, '#433520');
+        }
+
+
+
+
+
+
+
+        // Adding Canvas to main 
+        document.body.appendChild(canvas);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 10;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <script>
+        // Creating Canvas 
+        var canvas = document.createElement('canvas');
+        canvas.height = 300;
+        canvas.width = 300;
+        canvas.style.border = "2px solid black";
+
+
+        var ctx = canvas.getContext('2d');
+        var gr = ctx.createLinearGradient(0, 200, 250, 250);
+
+        gr.addColorStop("0.2", "#2c061f");
+        gr.addColorStop("1", "#374045");
+
+        ctx.fillStyle = gr;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        var gr = ctx.createRadialGradient(0, 0, 80, 0, 0, 400);
+        gr.addColorStop(0, "#d89216");
+        gr.addColorStop(1, "#e1d89f");
+
+        // Fill with gradient
+        ctx.fillStyle = gr;
+        ctx.strokeStyle = '#d89216';
+        ctx.lineWidth = 2;
+        ctx.fillStyle = gr;
+        ctx.arc(150, 150, 100, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+
+
+        //Eyes
+
+        var ctxeyes = canvas.getContext('2d');
+        ctxeyes.strokeStyle = '#d89216';
+        ctxeyes.fillStyle = '#fff'
+        ctxeyes.shadowColor = '#d89216';
+        ctxeyes.shadowOffsetX = 10;
+        ctxeyes.shadowOffsetY = 10;
+        ctxeyes.shadowBlur = 10;
+
+        //Eye 1
+        ctxeyes.beginPath();
+        ctxeyes.arc(110, 120, 25, 0, Math.PI * 2);
+        ctxeyes.fill();
+        ctxeyes.stroke();
+
+
+        //Eye 2
+        ctxeyes.beginPath();
+        ctxeyes.arc(190, 120, 25, 0, Math.PI * 2);
+        ctxeyes.fill();
+        ctxeyes.stroke();
+
+        //Eyeballs
+        var ctxeyeballs = canvas.getContext('2d');
+        ctxeyeballs.strokeStyle = '#000';
+        ctxeyeballs.fillStyle = '#333'
+
+        // Eyeball 1
+        ctxeyeballs.beginPath();
+        ctxeyeballs.arc(112, 125, 15, 0, Math.PI * 2);
+        ctxeyeballs.fill();
+        ctxeyeballs.stroke();
+
+        // Eyeball 2
+        ctxeyeballs.beginPath();
+        ctxeyeballs.arc(192, 125, 15, 0, Math.PI * 2);
+        ctxeyeballs.fill();
+        ctxeyeballs.stroke();
+
+
+
+        //Eyebrows
+        var ctxeyebrows = canvas.getContext('2d');
+        ctxeyebrows.strokeStyle = '#333';
+        ctxeyebrows.fillStyle = '#333';
+        ctxeyebrows.lineWidth = 2;
+
+        //Eyebrow 1
+        ctxeyebrows.beginPath();
+        ctxeyebrows.moveTo(90, 80);
+        ctxeyebrows.lineTo(120, 75);
+        ctxeyebrows.lineTo(150, 95);
+        ctxeyebrows.closePath();
+        ctx.fill();
+        ctxeyebrows.stroke();
+
+        //Eyebrow 2
+        ctxeyebrows.beginPath();
+        ctxeyebrows.moveTo(170, 95);
+        ctxeyebrows.lineTo(190, 75);
+        ctxeyebrows.lineTo(200, 80);
+        ctxeyebrows.closePath();
+        ctx.fill();
+        ctxeyebrows.stroke();
+
+        // Nose
+        var ctxnose = canvas.getContext('2d');
+        ctxnose.strokeStyle = '#d89216';
+        ctxnose.lineWidth = 6;
+        ctxnose.beginPath();
+        ctxnose.moveTo(130, 180);
+        ctxnose.bezierCurveTo(140, 200, 190, 200, 155, 120);
+        ctxnose.stroke();
+
+
+        //Smile
+
+        var ctxsmile = canvas.getContext('2d');
+        ctxsmile.strokeStyle = '#333';
+        ctxsmile.lineWidth = 1;
+        ctxsmile.beginPath();
+        ctxsmile.moveTo(120, 210);
+        ctxsmile.bezierCurveTo(110, 210, 180, 240, 200, 200);
+        ctxsmile.stroke();
+
+
+        // Adding Canvas to main 
+        document.body.appendChild(canvas);
+    </script>
+
+</body>
+
+</html>
